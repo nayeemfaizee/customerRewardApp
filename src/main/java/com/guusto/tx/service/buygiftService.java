@@ -48,7 +48,7 @@ public class buygiftService {
 		}
 		
 		List<orderDetails> orderDtls = request.getorderDetails();		
-		balanceResponse obj=  restTemplate.getForObject("http://localhost:8081/guusto-service/custBalance/"+request.getClientId()+"/", balanceResponse.class);
+		balanceResponse obj=  restTemplate.getForObject("http://localhost:8082/guusto-service/custBalance/"+request.getClientId()+"/", balanceResponse.class);
 		double bal = obj.getBalance();
 		double remindBalance = 0.0;
 		boolean isAvailBalance = true;
@@ -68,6 +68,7 @@ public class buygiftService {
 				tranDtl.setBalance(remindBalance);
 				tranDtl.setRemindbalance(remindBalance);
 			    tranDtl.setGift(Integer.parseInt(orderdtl.getQuantity()));
+			    tranDtl.setQuantity(Integer.parseInt(orderdtl.getQuantity()));
 			    translist.add(tranDtl);
 			}
 		}
